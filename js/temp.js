@@ -160,6 +160,9 @@ async function fetchDataArea() {
 
 $("#ingredients").click(async function () {
 
+    $("#search").addClass("d-none")
+
+
     await fetchDataIng()
 
 
@@ -189,7 +192,7 @@ $("#ingredients").click(async function () {
 
     $("#Ingridents").removeClass('d-none')
     $("#Ingridents").siblings('section').addClass('d-none')
-
+    $(".mealsRow").removeClass("d-none")
 
 
     //-------------------------------------------------------------
@@ -208,7 +211,7 @@ $("#ingredients").click(async function () {
 $("#categories").click(async function () {
 
 
-
+    $("#search").addClass("d-none")
 
     await fetchDataCat()
     /**async function fetchDataCat() {
@@ -249,7 +252,7 @@ $("#categories").click(async function () {
     });
 
     $(".mealsRowCat").html(temp)
-
+    $(".mealsRow").removeClass("d-none")
 
     $("#categ").removeClass("d-none")
     $('section').not("#categ").addClass("d-none")
@@ -262,6 +265,9 @@ $("#categories").click(async function () {
 ///////////////__________________________________________Areas_____________________________________________________
 
 $("#areas").click(async function () {
+
+    $("#search").addClass("d-none")
+
 
     await fetchDataArea()
 
@@ -339,7 +345,7 @@ $("#areas").click(async function () {
 
 
         $(".mealsRow").html(mealAreaTemp)
-
+        $(".mealsRow").removeClass("d-none")
 
         $("#Area").addClass('d-none')
         $("#Meals").removeClass('d-none')
@@ -733,6 +739,7 @@ async function displayMeals(functionnn) {
 
 
     document.querySelector(".mealsRow").innerHTML = temp
+    $(".mealsRow").removeClass("d-none")
 
     showDetailsById()
 
@@ -772,11 +779,13 @@ async function getDetailsByid() {
         `
         });
 
-        $("#Meals .row").html(temp)
-
+        $("#Meals .mealsRow").html(temp)
+        
 
         $("section").not("#Meals").addClass("d-none")
         $("#Meals").removeClass("d-none")
+        $("#Meals .mealsRow").removeClass("d-none")
+       
 
 
         showDetailsById()
@@ -791,6 +800,7 @@ async function getDetailsByid() {
 
 async function showDetailsById() {
     $('.areaMealOverlay').click(async function (e) {
+
 
 
         let res = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${e.target.getAttribute("type")}`)
